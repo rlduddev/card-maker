@@ -5,7 +5,8 @@ const DEFAULT_IMG = "/images/default_logo.png";
 
 const Card = ({card}) => {
     const {name, company, title, email, message, theme, fileName, fileURL} = card;
-    const url = fileURL && DEFAULT_IMG;
+    console.log(fileURL);
+    const url = fileURL || DEFAULT_IMG;
     return (
         <li className={`${styles.card} ${getStyles(theme)}`}>
             <img className={styles.avator} src={url} alt='profile img'></img>
