@@ -57,7 +57,7 @@ const CardAddForm = ({FileInput, onAdd}) => {
             <input ref={emailRef} className={styles.input}  type="text" name="email" placeholder="Email" />
             <textarea ref={messageRef} className={styles.textarea}  name="message" placeholder="Message" />
             <div className={styles.fileInput}>
-                <FileInput name={file.name} onFileChange={onFileChange}/>
+                <FileInput name={file.fileName} onFileChange={onFileChange}/>
             </div>
             <Button name="Add" onClick={onSubmit}/>
             
