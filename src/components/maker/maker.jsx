@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router';
 import Editor from '../editor/editor';
 import Fotter from '../footer/fotter';
@@ -13,9 +13,10 @@ const Maker = ({FileInput, authService, cardRepository}) => {
     const [cards, setCards] = useState({});
    
     const navigater = useNavigate();
-    const onLogOut = () => {
+    
+    const onLogOut = useCallback(() => {
         authService.logout();
-    }
+    }, [authService]);
 
     useEffect(() => {
         if(!userId) {
@@ -29,7 +30,7 @@ const Maker = ({FileInput, authService, cardRepository}) => {
         return () => {
             stopSync();
         }
-    }, [userId]);
+    }, [userId, cardRepository]);
 
     useEffect(() => {
         authService.onAuthChange(user => {
@@ -40,7 +41,7 @@ const Maker = ({FileInput, authService, cardRepository}) => {
                 navigater("/");
             }
         })
-    })
+    }, [userId, historyState, authService])
 
     const createOrUpdateCard = (card) => {
         setCards(cards => {
